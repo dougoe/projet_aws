@@ -1,16 +1,9 @@
+#!/usr/bin/env node
+import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
-
-export class CdkPipelineEbDemoStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
-    super(scope, id, props);
-
-    // The code that defines your stack goes here
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'CdkPipelineEbDemoQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
-  }
-}
+import { CdkPipelineStack } from '../lib/cdk-pipeline-stack';
+const app = new cdk.App();
+new CdkPipelineStack(app, 'CdkPipelineStack', {
+env: { account: '891377358864', region: 'us-east-1' },
+});
+app.synth();
